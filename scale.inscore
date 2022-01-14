@@ -1,0 +1,33 @@
+
+click = ($OSId < 3 ? touchBegin : mouseDown);
+/ITL/scene/scale set layer;
+/ITL/scene/scale width 1;
+/ITL/scene/scale height 0.1;
+/ITL/scene/scale/ll set rect 15 1.8;
+/ITL/scene/scale/ll xorigin -1;
+/ITL/scene/scale/ll x -6;
+/ITL/scene/scale/ll color lightgrey;
+/ITL/scene/scale/ll watch mouseDown (/ITL/scene event SCALE '$x[2.5,0.5]' );
+/ITL/scene/scale/ll watch mouseMove (/ITL/scene event SCALE '$x[2.5,0.5]' );
+/ITL/scene/scale/ll watch touchBegin (/ITL/scene event SCALE '$x[2.5,0.5]' );
+/ITL/scene/scale/ll watch touchUpdate (/ITL/scene event SCALE '$x[2.5,0.5]' );
+/ITL/scene/scale/ll show 0;
+
+/ITL/scene/scale/show set txt "Scale";
+/ITL/scene/scale/show x -8;
+/ITL/scene/scale/show watch mouseEnter ( /ITL/scene/scale/show color blue );
+/ITL/scene/scale/show watch mouseLeave ( /ITL/scene/scale/show color black );
+/ITL/scene/scale/show watch touchBegin ( /ITL/scene/scale/show color blue );
+/ITL/scene/scale/show watch touchUpdate ( /ITL/scene/scale/show color black );
+/ITL/scene/scale/show watch $click ( 
+	/ITL/scene/scale/show push,
+	/ITL/scene/scale/show set txt "Hide",
+	/ITL/scene/scale/ll show 1,
+	/ITL/scene/scale/show watch mouseDown ( 
+		/ITL/scene/scale/show set txt "Scale",
+		/ITL/scene/scale/ll show 0,
+		/ITL/scene/scale/show pop
+	)
+);
+
+/ITL/scene event SCALEREADY;
